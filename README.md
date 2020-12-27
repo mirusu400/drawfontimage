@@ -20,19 +20,27 @@ pip install pyqt5
 # Make a normal font in RGBA
 import core
 cv = core.canvas()
-cv.createImg("안녕하세요")
+cv.create("안녕하세요")
 
 # Make a font with outline, specific font, size
-cv = core.canvas(font="NanumGothic.ttf", size=15, oline=3)
-cv.createImg("폰트, 테두리, 크기 테스트", output="output2.png")
+cv = core.canvas(font="example/NanumGothic.ttf", size=15, oline=3)
+cv.create("폰트, 테두리, 크기 테스트", output="output2.png")
     
 # Make a font with other color, row, column
-cv = core.canvas(column=5, owidth=2, bgcolor=(128, 0, 0, 255), fcolor=(0, 128, 0, 255), ocolor=(0, 0, 128, 255))
-cv.createImg("일이삼사오육칠팔구십", output="output3.png")
+cv = core.canvas(column=5, oline=2, bgcolor=(128, 0, 0, 255), fcolor=(0, 128, 0, 255), ocolor=(0, 0, 128, 255))
+cv.create("일이삼사오육칠팔구십", output="output3.png")
 
 # Make a font in RGB mode
 cv = core.canvas(mode="RGB")
-cv.createImg("알쥐비모드테스트!1234", output="output4.bmp")
+cv.create("알쥐비모드테스트!1234", output="output4.bmp")
+
+# Make a font in text file
+cv = core.canvas()
+cv.create("example/simplekorean.txt", output="output5.png")
+
+# Make a font without anti-aliasing
+cv = core.canvas(mode="RGBA")
+cv.create("안티앨리어싱없이", output="output6.png", mode="n")
 
 ```
 
@@ -42,7 +50,7 @@ cv.createImg("알쥐비모드테스트!1234", output="output4.bmp")
 * Add GUI design
 * Make image with posterize
 * Make image with specific color palette
-* Make bitmap mode(without anti-aliasing)
+* Fix outline when turn off anti-aliasing
 
 ## Thanks to
 * 잎사귀소년 - 아이디어 제공

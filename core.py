@@ -4,7 +4,7 @@ import os.path
 
 
 class canvas:
-    def __init__(self, font=None, mode="RGBA", size=12, row=10, column=10,
+    def __init__(self, font=None, mode="RGBA", size=13, row=10, column=10,
                  width=-1, height=-1, oline=0,
                  bgcolor=(0, 0, 0, 0), fcolor=(255, 255, 255, 255),
                  ocolor=(0, 0, 0, 255)):
@@ -34,7 +34,7 @@ class canvas:
         if self.font is None:
             system = platform.system()
             # Check system neither Windows or Linux
-            if system == "WindowsError":
+            if system == "Windows":
                 if os.path.exists("C:/Windows/Fonts/gulim.ttc"):
                     self.font = "C:/Windows/Fonts/gulim.ttc"
                 else:
@@ -45,8 +45,8 @@ class canvas:
                 else:
                     self.font = "/usr/share/fonts/truetype/freefont/FreeMono.ttf"
 
-    def createImg(self, text, output="output.png", cwidth=-1, cheight=-1,
-                  xoffset=0, yoffset=0, mode="t"):
+    def create(self, text, output="output.png", cwidth=-1, cheight=-1,
+                  xoffset=0, yoffset=0, mode="a"):
         """
             Create a image file(*.png) with specific text
             text = A text that will be written(string or text file)
@@ -72,13 +72,15 @@ class canvas:
             else:
                 maxwidth = (self.column + 1) * cwidth
         if self.height == -1:
-            maxheight = ((len(text) // self.column) + 1) * cheight
+            maxheight = ((len(text) // self.column) + 2) * cheight
 
         img = Image.new(self.mode, (maxwidth, maxheight), color=self.bgcolor)
         fnt = ImageFont.truetype(self.font, self.size, encoding="UTF-8")
 
         draw = ImageDraw.Draw(img)
-        if self.mode == "b":
+
+        # Set non-anti-alias
+        if mode == "n":
             draw.fontmode = "1"
         nrow = 0
         ncolumn = 0
@@ -103,6 +105,5 @@ class canvas:
                 ncolumn = 0
             else:
                 ncolumn += 1
-
 
         img.save(output)

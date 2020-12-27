@@ -27,8 +27,8 @@ class Dialog(QDialog):
 
 
 if __name__ == '__main__':
-    cv = core.canvas(font="gulim.ttf", mode="RGB")
-    cv.createImg("fkor.txt")
+    cv = core.canvas(font="example/NanumGothic.ttf", mode="RGBA", size=16)
+    cv.create("귓규균", output="output3.png", mode="n")
     app = QApplication(sys.argv)
     dialog = Dialog()
 dialog.exec_()
