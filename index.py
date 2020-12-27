@@ -6,8 +6,9 @@ from PyQt5.QtWidgets import (
     QApplication,
 )
 import sys
-import drawcore
-
+import core
+def printa(a,b=10,c=10):
+    print(a+b+c)
 
 class Dialog(QDialog):
     def onClick(self):
@@ -26,7 +27,8 @@ class Dialog(QDialog):
 
 
 if __name__ == '__main__':
-    drawcore.createImg("안녕하세요",15,15)
+    cv = core.canvas(font="gulim.ttf")
+    cv.createImg("안녕하세요",15,15)
     app = QApplication(sys.argv)
     dialog = Dialog()
 dialog.exec_()
