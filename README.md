@@ -14,7 +14,7 @@ pip install pillow==7.2.0
 pip install pyqt5
 ```
 
-# Usage(temporary)
+# Example(temporary)
 
 ```
 # Make a normal font in RGBA
