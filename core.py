@@ -4,14 +4,33 @@ import os.path
 
 
 class canvas:
-    def __init__(self, width=1000, height=1000, size=10, row=10, column=10,
-                 font=None):
+    def __init__(self, font=None, mode="RGBA", size=12, row=10, column=10,
+                 width=-1, height=-1, oline=0,
+                 bgcolor=(0, 0, 0, 0), fcolor=(255, 255, 255, 255),
+                 ocolor=(0, 0, 0, 255)):
+        """
+            font = A font file name
+            row = Text's row in image (maybe never used)
+            column = Text's column in image
+            width = Image's width
+            height = Image's height
+        """
         self.size = size
         self.width = width
         self.height = height
+        self.outlinewidth = oline
         self.font = font
         self.row = row
         self.column = column
+        self.bgcolor = bgcolor
+        self.fontcolor = fcolor
+        self.outlinecolor = ocolor
+        self.mode = mode
+        if mode == "RGB":
+            bgcolor = (bgcolor[0], bgcolor[1], bgcolor[2])
+            fcolor = (fcolor[0], fcolor[1], fcolor[2])
+            ocolor = (ocolor[0], ocolor[1], ocolor[2])
+
         if self.font is None:
             system = platform.system()
             # Check system neither Windows or Linux
@@ -26,48 +45,64 @@ class canvas:
                 else:
                     self.font = "/usr/share/fonts/truetype/freefont/FreeMono.ttf"
 
-    def createImg(self, text, output="output.png", width=-1, height=-1,
-                  xoffset=0, yoffset=0):
+    def createImg(self, text, output="output.png", cwidth=-1, cheight=-1,
+                  xoffset=0, yoffset=0, mode="t"):
         """
             Create a image file(*.png) with specific text
             text = A text that will be written(string or text file)
-            width, height = A character's width and height
+            cwidth, cheight = A character's width and height
             xoffset, yoffset = A starting point which font start
         """
 
-        if width == -1:
-            width = self.size + 3
-        if height == -1:
-            height = self.size + 3
+        # Set character's width
+        if cwidth <= 0:
+            cwidth = self.size + 3
+        if cheight <= 0:
+            cheight = self.size + 3
 
+        # Set text
         if os.path.exists(text):
             with open(text, mode='r') as file:
                 text = "".join(file.readlines())
-        print(text)
-        img = Image.new("RGBA", (self.width, self.height), color = (0, 0, 0, 0) ) 
+
+        # Set image's width and height
+        if self.width == -1:
+            if len(text) <= self.column:
+                maxwidth = (len(text) + 1) * cwidth
+            else:
+                maxwidth = (self.column + 1) * cwidth
+        if self.height == -1:
+            maxheight = ((len(text) // self.column) + 1) * cheight
+
+        img = Image.new(self.mode, (maxwidth, maxheight), color=self.bgcolor)
         fnt = ImageFont.truetype(self.font, self.size, encoding="UTF-8")
 
         draw = ImageDraw.Draw(img)
-        stroke_color=(128,128,128,128)
+        if self.mode == "b":
+            draw.fontmode = "1"
         nrow = 0
         ncolumn = 0
-        # 구문을 리스트로 받아서, 글씨를 하나하나 그립니다.
+        # Draw a chracter into image
         for char in text:
-            xpos = (ncolumn * width) + xoffset
-            ypos = (nrow * height) + yoffset
+            # Get position
+            xpos = (ncolumn * cwidth) + xoffset
+            ypos = (nrow * cheight) + yoffset
             draw.text(
                 (xpos, ypos),
                 char,
-                fill=(255, 255, 255, 255),
+                fill=self.fontcolor,
                 font=fnt,
+                # https://pillow.readthedocs.io/en/stable/handbook/text-anchors.html#text-anchors
                 anchor="la",
-                stroke_width=2,
-                stroke_fill=stroke_color
+                stroke_width=self.outlinewidth,
+                stroke_fill=self.outlinecolor
             )
 
-            if ncolumn == self.column:
+            if ncolumn == (self.column-1):
                 nrow += 1
                 ncolumn = 0
             else:
                 ncolumn += 1
+
+
         img.save(output)
