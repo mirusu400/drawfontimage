@@ -1,7 +1,7 @@
 from PIL import Image, ImageDraw, ImageFont
 import platform
 import os.path
-
+import json
 
 class canvas:
     def __init__(self, font=None, mode="RGBA", size=13, row=10, column=10,
@@ -26,6 +26,7 @@ class canvas:
         self.fontcolor = fcolor
         self.outlinecolor = ocolor
         self.mode = mode
+        self.image = ""
         if mode == "RGB":
             bgcolor = (bgcolor[0], bgcolor[1], bgcolor[2])
             fcolor = (fcolor[0], fcolor[1], fcolor[2])
@@ -54,6 +55,11 @@ class canvas:
             xoffset, yoffset = A starting point which font start
         """
 
+        outputfile = output
+        outputjson = os.path.splitext(output)[0]+".json"
+
+        data = {}
+
         # Set character's width
         if cwidth <= 0:
             cwidth = self.size + 3
@@ -68,13 +74,13 @@ class canvas:
         # Set image's width and height
         if self.width == -1:
             if len(text) <= self.column:
-                maxwidth = (len(text) + 1) * cwidth
+                self.width = (len(text) + 1) * cwidth
             else:
-                maxwidth = (self.column + 1) * cwidth
+                self.width = (self.column + 1) * cwidth
         if self.height == -1:
-            maxheight = ((len(text) // self.column) + 2) * cheight
+            self.height = ((len(text) // self.column) + 2) * cheight
 
-        img = Image.new(self.mode, (maxwidth, maxheight), color=self.bgcolor)
+        img = Image.new(self.mode, (self.width, self.height), color=self.bgcolor)
         fnt = ImageFont.truetype(self.font, self.size, encoding="UTF-8")
 
         draw = ImageDraw.Draw(img)
@@ -84,8 +90,25 @@ class canvas:
             draw.fontmode = "1"
         nrow = 0
         ncolumn = 0
+
+        # Save dict (for json)
+        data['width'] = self.width
+        data['height'] = self.height
+        data['cwidth'] = cwidth
+        data['cheight'] = cheight
+        data['font'] = self.font
+        data['size'] = self.size
+        data['outlinewidth'] = self.outlinewidth
+        data['bgcolor'] = self.bgcolor
+        data['fontcolor'] = self.fontcolor
+        data['outlinecolor'] = self.outlinecolor
+        data['imagemode'] = self.mode
+        data['fontmode'] = mode
+        data['character'] = []
+
         # Draw a chracter into image
         for char in text:
+            chardata = {}
             # Get position
             xpos = (ncolumn * cwidth) + xoffset
             ypos = (nrow * cheight) + yoffset
@@ -106,4 +129,22 @@ class canvas:
             else:
                 ncolumn += 1
 
-        img.save(output)
+            # Save chracter data (for json)
+            chardata['char'] = char
+            chardata['xpos'] = xpos
+            chardata['ypos'] = ypos
+            data['character'].append(chardata)
+
+        with open(outputjson, 'w') as fjson:
+            json.dump(data, fjson)
+
+        self.image = img
+        img.save(outputfile)
+        return img
+
+    def posterize_palette(self):
+        im = self.image.load()
+        for x in range(0, self.width):
+            for y in range(0, self.height):
+                pass
+        return

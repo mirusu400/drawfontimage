@@ -4,18 +4,19 @@ from PyQt5.QtWidgets import (
     QPushButton,
     QVBoxLayout,
     QApplication,
+    QWidget
 )
 import sys
 import core
-def printa(a,b=10,c=10):
-    print(a+b+c)
+
 
 class Dialog(QDialog):
-    def onClick(self):
-        self.label.setText("Button clicked")
-
     def __init__(self):
         super(Dialog, self).__init__()
+        self.initUI()
+
+    def initUI(self):
+        self.resize(800, 600)
         self.button = QPushButton("Click me")
         self.button.clicked.connect(self.onClick)
         self.label = QLabel("", self)
@@ -25,10 +26,14 @@ class Dialog(QDialog):
         self.setLayout(mainLayout)
         self.setWindowTitle("Example")
 
+    def onClick(self):
+        self.label.setText("Button clicked")
+
 
 if __name__ == '__main__':
-    cv = core.canvas(font="example/NanumGothic.ttf", mode="RGBA", size=16)
+    cv = core.canvas(font="example/NanumGothic.ttf", mode="RGB", size=16)
     cv.create("귓규균", output="output3.png", mode="n")
+    cv.posterize_palette()
     app = QApplication(sys.argv)
     dialog = Dialog()
-dialog.exec_()
+    dialog.exec_()
