@@ -14,6 +14,12 @@ pip install pillow==7.2.0
 pip install pyqt5
 ```
 
+# Functions
+* Draw a font
+* Draw a font without anti-aliasing
+* Draw a font with posterize
+
+
 # Example(temporary)
 
 ```
@@ -48,7 +54,6 @@ cv.create("안티앨리어싱없이", output="output6.png", mode="n")
     
 # TODO
 * Add GUI design
-* Make image with posterize
 * Make image with specific color palette
 * Fix outline when turn off anti-aliasing
 

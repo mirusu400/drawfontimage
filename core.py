@@ -1,7 +1,8 @@
-from PIL import Image, ImageDraw, ImageFont
+from PIL import Image, ImageDraw, ImageFont, ImageOps
 import platform
 import os.path
 import json
+import rreader
 
 class canvas:
     def __init__(self, font=None, mode="RGBA", size=13, row=10, column=10,
@@ -27,6 +28,7 @@ class canvas:
         self.outlinecolor = ocolor
         self.mode = mode
         self.image = ""
+        self.data = {}
         if mode == "RGB":
             bgcolor = (bgcolor[0], bgcolor[1], bgcolor[2])
             fcolor = (fcolor[0], fcolor[1], fcolor[2])
@@ -46,19 +48,14 @@ class canvas:
                 else:
                     self.font = "/usr/share/fonts/truetype/freefont/FreeMono.ttf"
 
-    def create(self, text, output="output.png", cwidth=-1, cheight=-1,
-                  xoffset=0, yoffset=0, mode="a"):
+    def create(self, text, cwidth=-1, cheight=-1,
+            xoffset=0, yoffset=0, mode="a"):
         """
             Create a image file(*.png) with specific text
             text = A text that will be written(string or text file)
             cwidth, cheight = A character's width and height
             xoffset, yoffset = A starting point which font start
         """
-
-        outputfile = output
-        outputjson = os.path.splitext(output)[0]+".json"
-
-        data = {}
 
         # Set character's width
         if cwidth <= 0:
@@ -92,19 +89,19 @@ class canvas:
         ncolumn = 0
 
         # Save dict (for json)
-        data['width'] = self.width
-        data['height'] = self.height
-        data['cwidth'] = cwidth
-        data['cheight'] = cheight
-        data['font'] = self.font
-        data['size'] = self.size
-        data['outlinewidth'] = self.outlinewidth
-        data['bgcolor'] = self.bgcolor
-        data['fontcolor'] = self.fontcolor
-        data['outlinecolor'] = self.outlinecolor
-        data['imagemode'] = self.mode
-        data['fontmode'] = mode
-        data['character'] = []
+        self.data['width'] = self.width
+        self.data['height'] = self.height
+        self.data['cwidth'] = cwidth
+        self.data['cheight'] = cheight
+        self.data['font'] = self.font
+        self.data['size'] = self.size
+        self.data['outlinewidth'] = self.outlinewidth
+        self.data['bgcolor'] = self.bgcolor
+        self.data['fontcolor'] = self.fontcolor
+        self.data['outlinecolor'] = self.outlinecolor
+        self.data['imagemode'] = self.mode
+        self.data['fontmode'] = mode
+        self.data['character'] = []
 
         # Draw a chracter into image
         for char in text:
@@ -133,18 +130,46 @@ class canvas:
             chardata['char'] = char
             chardata['xpos'] = xpos
             chardata['ypos'] = ypos
-            data['character'].append(chardata)
+            self.data['character'].append(chardata)
 
         with open(outputjson, 'w') as fjson:
-            json.dump(data, fjson)
+            json.dump(self.data, fjson, indent=4)
 
         self.image = img
-        img.save(outputfile)
+        # img.save(outputfile)
         return img
 
-    def posterize_palette(self):
-        im = self.image.load()
-        for x in range(0, self.width):
-            for y in range(0, self.height):
-                pass
-        return
+    def change_palette(self, p):
+        palette = p
+        colors = []
+        # Get palette
+        if palette is not None:
+            # if RIFF, read riff..
+            if os.path.splittext(palette)[1] == 'pal':
+                rre = rreader.palette(palette)
+                colors = rre.getpalette()
+
+            # if JSON, read json..
+            elif os.path.splittext(palette[1] == 'json'):
+                with open(palette, 'r') as fjson:
+                    json_data = json.load(fjson)
+                    tmp = json_data['color']
+                    for item in tmp:
+                        t = (item[1], item[2], item[3])
+                        colors.append(t)
+            else:
+                raise Exception("Unknown file extension")
+
+        # TODO.. CHANGE PALETTE
+
+    def posterize_palette(self, bit):
+        im = self.image
+        self.image = ImageOps.posterize(im, bit)
+        return self.image
+
+    def save(self, o="output.png"):
+        self.image.save(o)
+
+    def dump(self, o="output.json"):
+        with open(o, 'w') as fjson:
+            json.dump(self.data, fjson, indent=4)
