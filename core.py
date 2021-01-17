@@ -141,41 +141,51 @@ class canvas:
         palette = p
         colors = []
         # Get palette
-        if palette is not None:
-            # if RIFF, read riff..
-            if os.path.splittext(palette)[1] == 'pal':
-                rre = rreader.palette(palette)
-                colors = rre.getpalette()
+        # if RIFF, read riff..
+        if os.path.splitext(palette)[1] == '.pal':
+            rre = rreader.palette(palette)
+            colors = rre.getpalette()
 
-            # if JSON, read json..
-            elif os.path.splittext(palette[1] == 'json'):
-                with open(palette, 'r') as fjson:
-                    json_data = json.load(fjson)
-                    tmp = json_data['color']
-                    for item in tmp:
-                        t = (item[1], item[2], item[3])
-                        colors.append(t)
-            else:
-                raise Exception("Unknown file extension")
+        # if JSON, read json..
+        elif os.path.splitext(palette)[1] == '.json':
+            with open(palette, 'r') as fjson:
+                json_data = json.load(fjson)
+                tmp = json_data['color']
+                for item in tmp:
+                    t = (item[1], item[2], item[3])
+                    colors.append(t)
+        else:
+            raise Exception("Unknown file extension")
+        print("This make a take a while.. Please wait....")
 
-        # TODO.. CHANGE PALETTE
+        # Linear-searching palettes with each pixel, so the algorithm should be much slow..
+        # It takes O(MN^2) which M is numbers of color and N of width and height..
+        # Of course, It should be improved, I'll do that..
+
         im = self.image.load()
         for x in range(0, self.width):
             for y in range(0, self.height):
                 tidx = -1
                 tdifference = 987654321
                 if self.mode == "RGBA":
-                    r, g, b, a = im.getpixel((x, y))
+                    r, g, b, a = self.image.getpixel((x, y))
                 else:
-                    r, g, b = im.getpixel((x, y))
-
+                    r, g, b = self.image.getpixel((x, y))
                 for idx, item in enumerate(colors):
-                    td = abs(r - item[0]) + abs(g - item[1]) + abs(b - item[2])
+                    bidx, tr, tg, tb, ta = item
+                    tr = int(tr, 16)
+                    tg = int(tg, 16)
+                    tb = int(tb, 16)
+                    ta = int(ta, 16)
+                    td = abs(r - tr) + abs(g - tg) + abs(b - tb)
                     if td < tdifference:
                         tidx = idx
                         tdifference = td
-                ar, ag, ab, aa = colors[tidx]
-
+                idx, ar, ag, ab, aa = colors[tidx]
+                ar = int(ar, 16)
+                ag = int(ag, 16)
+                ab = int(ab, 16)
+                aa = int(aa, 16)
                 if self.mode == "RGBA":
                     im[x, y] = (ar, ag, ab, a)
                 else:
