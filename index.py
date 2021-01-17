@@ -65,10 +65,14 @@ class Widgets(QWidget):
         self.setWindowTitle('Absolute Positioning')
         self.setGeometry(300, 300, 400, 200)
 
+
 if __name__ == '__main__':
     cv = core.canvas(font="example/NanumGothic.ttf", mode="RGB", size=16)
-    cv.create("귓규균", output="output3.png", mode="n")
-    cv.posterize_palette()
+    cv.create("귓규균", mode="n")
+    cv.save("output2.png")
+    cv.change_palette("./example/TLP.pal")
+    cv.save("output3.png")
+    # cv.posterize_palette()
     # app = QApplication(sys.argv)
     # widget = Widgets()
     # window = MainWindow()

@@ -57,6 +57,7 @@ class canvas:
             xoffset, yoffset = A starting point which font start
         """
 
+
         # Set character's width
         if cwidth <= 0:
             cwidth = self.size + 3
@@ -132,9 +133,6 @@ class canvas:
             chardata['ypos'] = ypos
             self.data['character'].append(chardata)
 
-        with open(outputjson, 'w') as fjson:
-            json.dump(self.data, fjson, indent=4)
-
         self.image = img
         # img.save(outputfile)
         return img
@@ -161,6 +159,28 @@ class canvas:
                 raise Exception("Unknown file extension")
 
         # TODO.. CHANGE PALETTE
+        im = self.image.load()
+        for x in range(0, self.width):
+            for y in range(0, self.height):
+                tidx = -1
+                tdifference = 987654321
+                if self.mode == "RGBA":
+                    r, g, b, a = im.getpixel((x, y))
+                else:
+                    r, g, b = im.getpixel((x, y))
+
+                for idx, item in enumerate(colors):
+                    td = abs(r - item[0]) + abs(g - item[1]) + abs(b - item[2])
+                    if td < tdifference:
+                        tidx = idx
+                        tdifference = td
+                ar, ag, ab, aa = colors[tidx]
+
+                if self.mode == "RGBA":
+                    im[x, y] = (ar, ag, ab, a)
+                else:
+                    im[x, y] = (ar, ag, ab)
+        return
 
     def posterize_palette(self, bit):
         im = self.image
