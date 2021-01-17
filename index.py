@@ -67,8 +67,8 @@ class Widgets(QWidget):
 
 
 if __name__ == '__main__':
-    cv = core.canvas(font="example/NanumGothic.ttf", mode="RGB", size=16)
-    cv.create("귓규균", mode="n")
+    cv = core.canvas(font="example/NanumGothic.ttf", bgcolor=(250,250,250,255), fcolor=(32,16,13,255), size=32)
+    cv.create("안녕하슈")
     cv.save("output2.png")
     cv.change_palette("./example/TLP.pal")
     cv.save("output3.png")

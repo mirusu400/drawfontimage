@@ -156,13 +156,14 @@ class canvas:
                     colors.append(t)
         else:
             raise Exception("Unknown file extension")
-        print("This make a take a while.. Please wait....")
+        print("Changing colors may take a while.. Please wait....")
 
         # Linear-searching palettes with each pixel, so the algorithm should be much slow..
         # It takes O(MN^2) which M is numbers of color and N of width and height..
         # Of course, It should be improved, I'll do that..
 
         im = self.image.load()
+        DP = [[[-1 for i in range(257)] for j in range(257)] for k in range(257)]
         for x in range(0, self.width):
             for y in range(0, self.height):
                 tidx = -1
@@ -171,16 +172,20 @@ class canvas:
                     r, g, b, a = self.image.getpixel((x, y))
                 else:
                     r, g, b = self.image.getpixel((x, y))
-                for idx, item in enumerate(colors):
-                    bidx, tr, tg, tb, ta = item
-                    tr = int(tr, 16)
-                    tg = int(tg, 16)
-                    tb = int(tb, 16)
-                    ta = int(ta, 16)
-                    td = abs(r - tr) + abs(g - tg) + abs(b - tb)
-                    if td < tdifference:
-                        tidx = idx
-                        tdifference = td
+                if DP[r][g][b] is not -1:
+                    tidx = DP[r][g][b]
+                else:
+                    for idx, item in enumerate(colors):
+                        bidx, tr, tg, tb, ta = item
+                        tr = int(tr, 16)
+                        tg = int(tg, 16)
+                        tb = int(tb, 16)
+                        ta = int(ta, 16)
+                        td = abs(r - tr) + abs(g - tg) + abs(b - tb)
+                        if td < tdifference:
+                            tidx = idx
+                            tdifference = td
+                    DP[r][g][b] = tidx
                 idx, ar, ag, ab, aa = colors[tidx]
                 ar = int(ar, 16)
                 ag = int(ag, 16)
