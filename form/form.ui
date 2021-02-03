@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>Dialog</class>
- <widget class="QDialog" name="Dialog">
+ <class>Drawfontimage</class>
+ <widget class="QDialog" name="Drawfontimage">
   <property name="geometry">
    <rect>
     <x>0</x>
@@ -11,7 +11,7 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>Dialog</string>
+   <string>Drawfontimage</string>
   </property>
   <widget class="QGroupBox" name="groupBox">
    <property name="geometry">
@@ -51,7 +51,7 @@
      <string>From Text</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="pushButton">
+   <widget class="QPushButton" name="btn_fromfile">
     <property name="geometry">
      <rect>
       <x>120</x>
@@ -64,7 +64,7 @@
      <string>From..</string>
     </property>
    </widget>
-   <widget class="QTextEdit" name="textEdit">
+   <widget class="QTextEdit" name="edit_fromtext">
     <property name="geometry">
      <rect>
       <x>110</x>
@@ -74,7 +74,7 @@
      </rect>
     </property>
    </widget>
-   <widget class="QLineEdit" name="lineEdit_13">
+   <widget class="QLineEdit" name="line_fromfile">
     <property name="geometry">
      <rect>
       <x>200</x>
@@ -100,7 +100,7 @@
    <property name="title">
     <string>2. Set Font</string>
    </property>
-   <widget class="QPushButton" name="pushButton_2">
+   <widget class="QPushButton" name="btn_otherfont">
     <property name="geometry">
      <rect>
       <x>120</x>
@@ -126,7 +126,7 @@
      <string>Use Other font</string>
     </property>
    </widget>
-   <widget class="QGroupBox" name="groupBox_4">
+   <widget class="QGroupBox" name="group_textcolor">
     <property name="geometry">
      <rect>
       <x>10</x>
@@ -151,7 +151,7 @@
       <string>R</string>
      </property>
     </widget>
-    <widget class="QLineEdit" name="lineEdit">
+    <widget class="QLineEdit" name="line_text_R">
      <property name="geometry">
       <rect>
        <x>20</x>
@@ -196,7 +196,7 @@
       <string>B</string>
      </property>
     </widget>
-    <widget class="QLineEdit" name="lineEdit_2">
+    <widget class="QLineEdit" name="line_text_G">
      <property name="geometry">
       <rect>
        <x>70</x>
@@ -215,7 +215,7 @@
       <number>3</number>
      </property>
     </widget>
-    <widget class="QLineEdit" name="lineEdit_3">
+    <widget class="QLineEdit" name="line_text_B">
      <property name="geometry">
       <rect>
        <x>120</x>
@@ -247,7 +247,7 @@
       <string>A</string>
      </property>
     </widget>
-    <widget class="QLineEdit" name="lineEdit_4">
+    <widget class="QLineEdit" name="line_text_A">
      <property name="geometry">
       <rect>
        <x>170</x>
@@ -267,7 +267,7 @@
      </property>
     </widget>
    </widget>
-   <widget class="QGroupBox" name="groupBox_5">
+   <widget class="QGroupBox" name="group_gbcolor">
     <property name="geometry">
      <rect>
       <x>220</x>
@@ -292,7 +292,7 @@
       <string>R</string>
      </property>
     </widget>
-    <widget class="QLineEdit" name="lineEdit_5">
+    <widget class="QLineEdit" name="line_back_R">
      <property name="geometry">
       <rect>
        <x>20</x>
@@ -337,7 +337,7 @@
       <string>B</string>
      </property>
     </widget>
-    <widget class="QLineEdit" name="lineEdit_6">
+    <widget class="QLineEdit" name="line_back_G">
      <property name="geometry">
       <rect>
        <x>70</x>
@@ -356,7 +356,7 @@
       <number>3</number>
      </property>
     </widget>
-    <widget class="QLineEdit" name="lineEdit_7">
+    <widget class="QLineEdit" name="line_back_B">
      <property name="geometry">
       <rect>
        <x>120</x>
@@ -388,7 +388,7 @@
       <string>A</string>
      </property>
     </widget>
-    <widget class="QLineEdit" name="lineEdit_8">
+    <widget class="QLineEdit" name="line_back_A">
      <property name="geometry">
       <rect>
        <x>170</x>
@@ -408,7 +408,7 @@
      </property>
     </widget>
    </widget>
-   <widget class="QLabel" name="label_13">
+   <widget class="QLabel" name="label_fontsize">
     <property name="geometry">
      <rect>
       <x>10</x>
@@ -421,7 +421,7 @@
      <string>Font size</string>
     </property>
    </widget>
-   <widget class="QLineEdit" name="lineEdit_14">
+   <widget class="QLineEdit" name="line_fromotherfont">
     <property name="geometry">
      <rect>
       <x>200</x>
@@ -431,7 +431,7 @@
      </rect>
     </property>
    </widget>
-   <widget class="QLineEdit" name="lineEdit_15">
+   <widget class="QLineEdit" name="line_fontsize">
     <property name="geometry">
      <rect>
       <x>60</x>
@@ -451,43 +451,17 @@
      <x>10</x>
      <y>240</y>
      <width>441</width>
-     <height>121</height>
+     <height>101</height>
     </rect>
    </property>
    <property name="title">
     <string>3. Set Font Option</string>
    </property>
-   <widget class="QPushButton" name="pushButton_3">
+   <widget class="QCheckBox" name="chk_useoutline">
     <property name="geometry">
      <rect>
-      <x>120</x>
+      <x>20</x>
       <y>20</y>
-      <width>71</width>
-      <height>21</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>From..</string>
-    </property>
-   </widget>
-   <widget class="QCheckBox" name="chk_useotherfont_2">
-    <property name="geometry">
-     <rect>
-      <x>10</x>
-      <y>20</y>
-      <width>111</width>
-      <height>23</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>Use other font</string>
-    </property>
-   </widget>
-   <widget class="QCheckBox" name="chk_useotherfont_3">
-    <property name="geometry">
-     <rect>
-      <x>10</x>
-      <y>40</y>
       <width>111</width>
       <height>23</height>
      </rect>
@@ -496,11 +470,11 @@
      <string>Use outline</string>
     </property>
    </widget>
-   <widget class="QGroupBox" name="groupBox_6">
+   <widget class="QGroupBox" name="group_outline">
     <property name="geometry">
      <rect>
       <x>10</x>
-      <y>60</y>
+      <y>40</y>
       <width>211</width>
       <height>61</height>
      </rect>
@@ -521,7 +495,7 @@
       <string>R</string>
      </property>
     </widget>
-    <widget class="QLineEdit" name="lineEdit_9">
+    <widget class="QLineEdit" name="line_outline_R">
      <property name="geometry">
       <rect>
        <x>20</x>
@@ -566,7 +540,7 @@
       <string>B</string>
      </property>
     </widget>
-    <widget class="QLineEdit" name="lineEdit_10">
+    <widget class="QLineEdit" name="line_outline_G">
      <property name="geometry">
       <rect>
        <x>70</x>
@@ -585,7 +559,7 @@
       <number>3</number>
      </property>
     </widget>
-    <widget class="QLineEdit" name="lineEdit_11">
+    <widget class="QLineEdit" name="line_outline_B">
      <property name="geometry">
       <rect>
        <x>120</x>
@@ -617,7 +591,7 @@
       <string>A</string>
      </property>
     </widget>
-    <widget class="QLineEdit" name="lineEdit_12">
+    <widget class="QLineEdit" name="line_outline_A">
      <property name="geometry">
       <rect>
        <x>170</x>
@@ -649,7 +623,7 @@
       <string>Outline size</string>
      </property>
     </widget>
-    <widget class="QLineEdit" name="lineEdit_16">
+    <widget class="QLineEdit" name="line_outline_size">
      <property name="geometry">
       <rect>
        <x>70</x>
@@ -663,11 +637,11 @@
      </property>
     </widget>
    </widget>
-   <widget class="QCheckBox" name="chk_useotherfont_4">
+   <widget class="QCheckBox" name="chk_useRGB">
     <property name="geometry">
      <rect>
       <x>110</x>
-      <y>40</y>
+      <y>20</y>
       <width>141</width>
       <height>21</height>
      </rect>
@@ -676,11 +650,11 @@
      <string>Draw font as an RGB</string>
     </property>
    </widget>
-   <widget class="QCheckBox" name="chk_useotherfont_5">
+   <widget class="QCheckBox" name="chk_usealiasing">
     <property name="geometry">
      <rect>
       <x>250</x>
-      <y>40</y>
+      <y>20</y>
       <width>201</width>
       <height>21</height>
      </rect>
@@ -689,25 +663,17 @@
      <string>Draw font without anti-alising</string>
     </property>
    </widget>
-   <widget class="QLineEdit" name="lineEdit_17">
-    <property name="geometry">
-     <rect>
-      <x>200</x>
-      <y>20</y>
-      <width>241</width>
-      <height>21</height>
-     </rect>
-    </property>
-    <property name="readOnly">
-     <bool>true</bool>
-    </property>
-   </widget>
+   <zorder>chk_useoutline</zorder>
+   <zorder>group_outline</zorder>
+   <zorder>chk_useRGB</zorder>
+   <zorder>chk_usealiasing</zorder>
+   <zorder>groupBox_4</zorder>
   </widget>
-  <widget class="QGroupBox" name="groupBox_7">
+  <widget class="QGroupBox" name="groupBox_4">
    <property name="geometry">
     <rect>
      <x>10</x>
-     <y>370</y>
+     <y>350</y>
      <width>441</width>
      <height>121</height>
     </rect>
@@ -728,7 +694,7 @@
      <string>Chracter per row</string>
     </property>
    </widget>
-   <widget class="QLineEdit" name="lineEdit_18">
+   <widget class="QLineEdit" name="line_column">
     <property name="geometry">
      <rect>
       <x>110</x>
@@ -760,7 +726,7 @@
      <string>Width(of Canvas)</string>
     </property>
    </widget>
-   <widget class="QLineEdit" name="lineEdit_19">
+   <widget class="QLineEdit" name="line_cwidth">
     <property name="geometry">
      <rect>
       <x>110</x>
@@ -805,7 +771,7 @@
      <string>Height(of Canvas)</string>
     </property>
    </widget>
-   <widget class="QLineEdit" name="lineEdit_20">
+   <widget class="QLineEdit" name="line_cheight">
     <property name="geometry">
      <rect>
       <x>270</x>
@@ -837,7 +803,7 @@
      <string>Width(of font)</string>
     </property>
    </widget>
-   <widget class="QLineEdit" name="lineEdit_21">
+   <widget class="QLineEdit" name="line_fheight">
     <property name="geometry">
      <rect>
       <x>270</x>
@@ -869,7 +835,7 @@
      <string>Height(of font)</string>
     </property>
    </widget>
-   <widget class="QLineEdit" name="lineEdit_22">
+   <widget class="QLineEdit" name="line_fwidth">
     <property name="geometry">
      <rect>
       <x>110</x>
@@ -888,7 +854,7 @@
      <number>32767</number>
     </property>
    </widget>
-   <widget class="QLineEdit" name="lineEdit_23">
+   <widget class="QLineEdit" name="line_xoffset">
     <property name="geometry">
      <rect>
       <x>110</x>
@@ -920,7 +886,7 @@
      <string>YOffset(of font)</string>
     </property>
    </widget>
-   <widget class="QLineEdit" name="lineEdit_24">
+   <widget class="QLineEdit" name="line_yoffset">
     <property name="geometry">
      <rect>
       <x>270</x>
@@ -953,11 +919,11 @@
     </property>
    </widget>
   </widget>
-  <widget class="QGroupBox" name="groupBox_8">
+  <widget class="QGroupBox" name="groupBox_5">
    <property name="geometry">
     <rect>
      <x>10</x>
-     <y>490</y>
+     <y>480</y>
      <width>441</width>
      <height>71</height>
     </rect>
@@ -965,7 +931,7 @@
    <property name="title">
     <string>5. Special Settings</string>
    </property>
-   <widget class="QCheckBox" name="chk_useotherfont_6">
+   <widget class="QCheckBox" name="chk_usespecialpalette">
     <property name="geometry">
      <rect>
       <x>10</x>
@@ -978,7 +944,7 @@
      <string>Use special palette</string>
     </property>
    </widget>
-   <widget class="QLineEdit" name="lineEdit_25">
+   <widget class="QLineEdit" name="line_spepal">
     <property name="geometry">
      <rect>
       <x>230</x>
@@ -991,7 +957,7 @@
      <bool>true</bool>
     </property>
    </widget>
-   <widget class="QPushButton" name="pushButton_4">
+   <widget class="QPushButton" name="btn_spepal">
     <property name="geometry">
      <rect>
       <x>150</x>
@@ -1004,7 +970,7 @@
      <string>From..</string>
     </property>
    </widget>
-   <widget class="QCheckBox" name="chk_useotherfont_7">
+   <widget class="QCheckBox" name="chk_savejson">
     <property name="geometry">
      <rect>
       <x>10</x>
@@ -1018,7 +984,7 @@
     </property>
    </widget>
   </widget>
-  <widget class="QPushButton" name="pushButton_5">
+  <widget class="QPushButton" name="btn_save">
    <property name="geometry">
     <rect>
      <x>10</x>
@@ -1031,7 +997,7 @@
     <string>Save Settings</string>
    </property>
   </widget>
-  <widget class="QPushButton" name="pushButton_6">
+  <widget class="QPushButton" name="btn_load">
    <property name="geometry">
     <rect>
      <x>100</x>
@@ -1044,7 +1010,7 @@
     <string>Load Settings</string>
    </property>
   </widget>
-  <widget class="QPushButton" name="pushButton_7">
+  <widget class="QPushButton" name="btn_build">
    <property name="geometry">
     <rect>
      <x>314</x>
