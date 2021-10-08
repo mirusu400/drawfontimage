@@ -1,8 +1,11 @@
 from PIL import Image, ImageDraw, ImageFont, ImageOps
+from ast import literal_eval
 import platform
 import os.path
 import json
 import rreader
+import re
+import math
 
 class canvas:
     def __init__(self, font=None, mode="RGBA", size=13, row=10, column=10,
@@ -47,16 +50,49 @@ class canvas:
                     self.font = "/usr/share/fonts/truetype/nanum/NanumBarunGothic.ttf"
                 else:
                     self.font = "/usr/share/fonts/truetype/freefont/FreeMono.ttf"
+    def setJSON(self, file):
+        '''
+        The function for read bffnt font file Menifest.
+        '''
+        try:
+            with open("./test_manifest.json", "r", encoding="utf-8") as f:
+                manifest = json.load(f)
+            glyphWidth_dict = manifest["glyphWidths"]
+            glyphMap_dict= manifest["glyphMap"]
+            self.texture_dict= manifest["textureInfo"]
+            self.fontInfo_dict = manifest["fontInfo"]
+            self.glyph_dict = dict()
+            for key, value in glyphMap_dict.items():
+                char_data = glyphWidth_dict[str(value)]
+                self.glyph_dict[key] = char_data
+            return True
+        except:
+            return False
 
     def create(self, text, cwidth=-1, cheight=-1,
-            xoffset=0, yoffset=0, mode="a"):
+            xoffset=0, yoffset=0, mode="a", jsonset = 0, sizeOffset = 0):
         """
             Create a image file(*.png) with specific text
             text = A text that will be written(string or text file)
             cwidth, cheight = A character's width and height
             xoffset, yoffset = A starting point which font start
+            jsonset = A bffnt font file's Menifest File. Use setJSON First.
+            SizeOffset = font Size offset When you use Menifest JSON File.
         """
-
+        # Check Menifest File.
+        if jsonset != 0:
+            if os.path.exists(jsonset):
+                json_flag = self.setJSON(jsonset)
+                if json_flag == False:
+                    print("Wrong JSON File. Ignore this setting.")
+                    jsonset = 0
+                else:
+                    cwidth = self.texture_dict["glyph"]["width"] + 1
+                    cheight = self.texture_dict["glyph"]["height"] + 1
+                    self.size = self.fontInfo_dict["width"] - sizeOffset
+            else:
+                print("Wrong JSON File. Ignore this setting.")
+                jsonset = 0
 
         # Set character's width
         if cwidth <= 0:
@@ -108,8 +144,20 @@ class canvas:
         for char in text:
             chardata = {}
             # Get position
-            xpos = (ncolumn * cwidth) + xoffset
+
+            if jsonset != 0:
+                if char in self.glyph_dict.keys() and ncolumn != 0:
+                    '''
+                    for apply font's kerning settings
+                    '''
+                    xcharoffset = self.glyph_dict[char]["left"]
+                else:
+                    xcharoffset = 0
+            else:
+                xcharoffset = 0
+            xpos = (ncolumn * cwidth) + xoffset - xcharoffset 
             ypos = (nrow * cheight) + yoffset
+
             draw.text(
                 (xpos, ypos),
                 char,

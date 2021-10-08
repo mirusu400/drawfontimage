@@ -61,6 +61,10 @@ cv.save("output6-1.png")
 cv.change_palette("./example/TLP.pal")
 cv.save("output6-2.png")
 
+# Use Manifest File from exist BFFNT Font
+cv = core.canvas(font="example/NanumGothic.ttf", bgcolor=(250,250,250,255), fcolor=(32,16,13,255), size=32)
+cv.create("안녕하슈",jsonset = "example/test_manifest.json")
+cv.save("output6-1.png")
 ```
 
 * * *
