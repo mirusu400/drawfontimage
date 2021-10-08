@@ -39,7 +39,7 @@ class palette():
         return
 
     def dump(self):
-        with open(self.dst, 'w') as fjson:
+        with open(self.dst, 'w', encoding="utf-8") as fjson:
             json.dump(self.data, fjson)
 
     def getpalette(self):

@@ -102,7 +102,7 @@ class canvas:
 
         # Set text
         if os.path.exists(text):
-            with open(text, mode='r') as file:
+            with open(text, mode='r', encoding="utf-8") as file:
                 text = "".join(file.readlines())
 
         # Set image's width and height
@@ -196,7 +196,7 @@ class canvas:
 
         # if JSON, read json..
         elif os.path.splitext(palette)[1] == '.json':
-            with open(palette, 'r') as fjson:
+            with open(palette, 'r', encoding="utf-8") as fjson:
                 json_data = json.load(fjson)
                 tmp = json_data['color']
                 for item in tmp:
@@ -254,5 +254,5 @@ class canvas:
         self.image.save(o)
 
     def dump(self, o="output.json"):
-        with open(o, 'w') as fjson:
+        with open(o, 'w', encoding="utf-8") as fjson:
             json.dump(self.data, fjson, indent=4)
