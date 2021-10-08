@@ -55,38 +55,12 @@ class canvas:
         The function for read bffnt font file Menifest.
         '''
         try:
-            raw_file = open(file,encoding = "utf8")
-            raw_text = raw_file.read()
-            rep_text = raw_text.replace("\n","")
-            glyphMap_pattern = re.compile('"glyphMap":.+},  "glyphWidths":')
-            glyphWidth_pattern = re.compile('"glyphWidths":.+}  },  "textureInfo":')
-            texture_pattern = re.compile('"textureInfo":.+"version"')
-            fontInfo_pattern= re.compile('"fontInfo": .+"glyphMap": {')
-            glyphMap_text = glyphMap_pattern.findall(rep_text)
-            glyphMap_text = glyphMap_text[0]
-            glyphWidth_text = glyphWidth_pattern.findall(rep_text)
-            glyphWidth_text = glyphWidth_text[0]
-            texture_text = texture_pattern.findall(rep_text)
-            texture_text = texture_text[0]
-            fontInfo_text = fontInfo_pattern.findall(rep_text)
-            fontInfo_text = fontInfo_text[0]
-            glyphMap_text = glyphMap_text.replace('"glyphMap": {    ',"")
-            glyphMap_text = glyphMap_text.replace('},  "glyphWidths":',"")
-            glyphMap_text = "{"+glyphMap_text+"}"
-            glyphWidth_text = glyphWidth_text.replace('"glyphWidths": {    ',"")
-            glyphWidth_text = glyphWidth_text.replace('  },  "textureInfo":',"")
-            glyphWidth_text = "{"+glyphWidth_text+"}"
-            texture_text = texture_text.replace('"textureInfo":',"")
-            texture_text = texture_text.replace(',  "version"',"")
-            texture_text = texture_text.replace(" ","")
-            fontInfo_text = fontInfo_text.replace('"fontInfo": ',"")
-            fontInfo_text = fontInfo_text.replace(',  "glyphMap": {',"")
-            fontInfo_text = fontInfo_text.replace(" ","")
-
-            glyphWidth_dict = literal_eval(glyphWidth_text)
-            glyphMap_dict= literal_eval(glyphMap_text)
-            self.texture_dict= literal_eval(texture_text)
-            self.fontInfo_dict = literal_eval(fontInfo_text)
+            with open("./test_manifest.json", "r", encoding="utf-8") as f:
+                manifest = json.load(f)
+            glyphWidth_dict = manifest["glyphWidths"]
+            glyphMap_dict= manifest["glyphMap"]
+            self.texture_dict= manifest["textureInfo"]
+            self.fontInfo_dict = manifest["fontInfo"]
             self.glyph_dict = dict()
             for key, value in glyphMap_dict.items():
                 char_data = glyphWidth_dict[str(value)]
