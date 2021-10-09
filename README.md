@@ -5,12 +5,14 @@ Draw a font into static image file
 ```
 Python >= 3.X
 pillow == 7.2.0
+chardet == 4.0.0
 pyqt5
 ```
 
 # Installation
 ```
 pip install pillow==7.2.0
+pip install chardet==4.0.0
 pip install pyqt5
 ```
 

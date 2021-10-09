@@ -6,6 +6,7 @@ import json
 import rreader
 import re
 import math
+import chardet
 
 class canvas:
     def __init__(self, font=None, mode="RGBA", size=13, row=10, column=10,
@@ -102,7 +103,9 @@ class canvas:
 
         # Set text
         if os.path.exists(text):
-            with open(text, mode='r', encoding="utf-8") as file:
+            with open(text, mode='rb') as file:
+                textencoding = chardet.detect(file.read())['encoding']
+            with open(text, mode='r', encoding=textencoding) as file:
                 text = "".join(file.readlines())
 
         # Set image's width and height
