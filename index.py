@@ -10,6 +10,7 @@ from PyQt5.QtGui import (
     QDesktopServices,
 )
 from PyQt5.QtCore import (
+    Qt,
     QUrl
 )
 from PyQt5 import uic
@@ -17,6 +18,15 @@ import sys
 import core
 import os
 
+if hasattr(Qt, 'AA_EnableHighDpiScaling'):
+    print('AA_EnableHighDpiScaling')
+    QApplication.setAttribute(Qt.AA_EnableHighDpiScaling, True)
+
+if hasattr(Qt, 'AA_UseHighDpiPixmaps'):
+    print('AA_UseHighDpiPixmaps')
+    QApplication.setAttribute(Qt.AA_UseHighDpiPixmaps, True)
+
+QApplication.setHighDpiScaleFactorRoundingPolicy(Qt.HighDpiScaleFactorRoundingPolicy.PassThrough)
 
 form_class = uic.loadUiType("./form/form.ui")[0]
 
