@@ -19,9 +19,10 @@ pip install pyqt5
 ```
 
 # Functions
-* Draw a font
-* Draw a font without anti-aliasing
-* Draw a font with posterize
+* Draw a font.
+* Draw a font with outline.
+* Draw a font without anti-aliasing.
+* Draw a font with posterize.
 
 # Usage
 Just open `index.py` and use GUI frontend.
@@ -76,8 +77,9 @@ cv.save("output7.png")
 * * *
     
 # TODO
-* Add GUI design
+* Save, Load JSON file
 * Add custom shadow
+* 한국어 지원
 
 ## Thanks to
 * 잎사귀소년 - 아이디어 제공
