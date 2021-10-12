@@ -21,8 +21,10 @@ pip install pyqt5
 * Draw a font without anti-aliasing
 * Draw a font with posterize
 
+# Usage
+Just open `index.py` and use GUI frontend.
 
-# Example(temporary)
+# Example (in CLU)
 
 ```
 # Make a normal font in RGBA
