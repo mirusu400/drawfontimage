@@ -223,7 +223,7 @@ class canvas:
                     r, g, b, a = self.image.getpixel((x, y))
                 else:
                     r, g, b = self.image.getpixel((x, y))
-                if DP[r][g][b] is not -1:
+                if DP[r][g][b] != -1:
                     tidx = DP[r][g][b]
                 else:
                     for idx, item in enumerate(colors):
