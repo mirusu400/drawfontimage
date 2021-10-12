@@ -17,8 +17,8 @@ class canvas:
             font = A font file name
             row = Text's row in image (maybe never used)
             column = Text's column in image
-            width = Image's width
-            height = Image's height
+            width = Canvas's width
+            height = Canvas's height
         """
         self.size = size
         self.width = width
@@ -38,7 +38,7 @@ class canvas:
             fcolor = (fcolor[0], fcolor[1], fcolor[2])
             ocolor = (ocolor[0], ocolor[1], ocolor[2])
 
-        if self.font is None:
+        if self.font == None or self.font == "":
             system = platform.system()
             # Check system neither Windows or Linux
             if system == "Windows":
@@ -51,9 +51,11 @@ class canvas:
                     self.font = "/usr/share/fonts/truetype/nanum/NanumBarunGothic.ttf"
                 else:
                     self.font = "/usr/share/fonts/truetype/freefont/FreeMono.ttf"
+
+
     def setJSON(self, file):
         '''
-        The function for read bffnt font file Menifest.
+        The function for read bffnt font file menifest.
         '''
         try:
             with open("./test_manifest.json", "r", encoding="utf-8") as f:
@@ -69,6 +71,7 @@ class canvas:
             return True
         except:
             return False
+
 
     def create(self, text, cwidth=-1, cheight=-1,
             xoffset=0, yoffset=0, mode="a", jsonset = 0, sizeOffset = 0):
@@ -96,9 +99,9 @@ class canvas:
                 jsonset = 0
 
         # Set character's width
-        if cwidth <= 0:
+        if cwidth < 1:
             cwidth = self.size + 3
-        if cheight <= 0:
+        if cheight < 1:
             cheight = self.size + 3
 
         # Set text
@@ -109,12 +112,12 @@ class canvas:
                 text = "".join(file.readlines())
 
         # Set image's width and height
-        if self.width == -1:
+        if self.width < 1:
             if len(text) <= self.column:
-                self.width = (len(text) + 1) * cwidth
+                self.width = len(text) * cwidth
             else:
-                self.width = (self.column + 1) * cwidth
-        if self.height == -1:
+                self.width = self.column * cwidth
+        if self.height < 1:
             self.height = ((len(text) // self.column) + 2) * cheight
 
         img = Image.new(self.mode, (self.width, self.height), color=self.bgcolor)
