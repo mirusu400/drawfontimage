@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>459</width>
-    <height>597</height>
+    <height>610</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -42,9 +42,9 @@
     <property name="geometry">
      <rect>
       <x>10</x>
-      <y>40</y>
-      <width>102</width>
-      <height>23</height>
+      <y>50</y>
+      <width>81</width>
+      <height>16</height>
      </rect>
     </property>
     <property name="text">
@@ -52,6 +52,9 @@
     </property>
    </widget>
    <widget class="QPushButton" name="btn_fromfile">
+    <property name="enabled">
+     <bool>false</bool>
+    </property>
     <property name="geometry">
      <rect>
       <x>120</x>
@@ -65,21 +68,27 @@
     </property>
    </widget>
    <widget class="QTextEdit" name="edit_fromtext">
+    <property name="enabled">
+     <bool>false</bool>
+    </property>
     <property name="geometry">
      <rect>
-      <x>110</x>
+      <x>120</x>
       <y>50</y>
-      <width>331</width>
+      <width>315</width>
       <height>51</height>
      </rect>
     </property>
    </widget>
    <widget class="QLineEdit" name="line_fromfile">
+    <property name="enabled">
+     <bool>false</bool>
+    </property>
     <property name="geometry">
      <rect>
       <x>200</x>
       <y>20</y>
-      <width>241</width>
+      <width>235</width>
       <height>21</height>
      </rect>
     </property>
@@ -100,7 +109,26 @@
    <property name="title">
     <string>2. Set Font</string>
    </property>
+   <widget class="QLineEdit" name="line_fromotherfont">
+    <property name="enabled">
+     <bool>false</bool>
+    </property>
+    <property name="geometry">
+     <rect>
+      <x>200</x>
+      <y>20</y>
+      <width>235</width>
+      <height>21</height>
+     </rect>
+    </property>
+    <property name="dragEnabled">
+     <bool>true</bool>
+    </property>
+   </widget>
    <widget class="QPushButton" name="btn_otherfont">
+    <property name="enabled">
+     <bool>false</bool>
+    </property>
     <property name="geometry">
      <rect>
       <x>120</x>
@@ -114,6 +142,9 @@
     </property>
    </widget>
    <widget class="QCheckBox" name="chk_useotherfont">
+    <property name="enabled">
+     <bool>false</bool>
+    </property>
     <property name="geometry">
      <rect>
       <x>10</x>
@@ -151,17 +182,20 @@
       <string>R</string>
      </property>
     </widget>
-    <widget class="QLineEdit" name="line_text_R">
+    <widget class="QLineEdit" name="line_textcolor_R">
+     <property name="enabled">
+      <bool>false</bool>
+     </property>
      <property name="geometry">
       <rect>
        <x>20</x>
-       <y>20</y>
-       <width>41</width>
-       <height>21</height>
+       <y>18</y>
+       <width>35</width>
+       <height>20</height>
       </rect>
      </property>
      <property name="inputMask">
-      <string>000; </string>
+      <string>000</string>
      </property>
      <property name="text">
       <string>0</string>
@@ -196,17 +230,20 @@
       <string>B</string>
      </property>
     </widget>
-    <widget class="QLineEdit" name="line_text_G">
+    <widget class="QLineEdit" name="line_textcolor_G">
+     <property name="enabled">
+      <bool>false</bool>
+     </property>
      <property name="geometry">
       <rect>
        <x>70</x>
-       <y>20</y>
-       <width>41</width>
-       <height>21</height>
+       <y>18</y>
+       <width>35</width>
+       <height>20</height>
       </rect>
      </property>
      <property name="inputMask">
-      <string>000; </string>
+      <string>000</string>
      </property>
      <property name="text">
       <string>0</string>
@@ -215,17 +252,20 @@
       <number>3</number>
      </property>
     </widget>
-    <widget class="QLineEdit" name="line_text_B">
+    <widget class="QLineEdit" name="line_textcolor_B">
+     <property name="enabled">
+      <bool>false</bool>
+     </property>
      <property name="geometry">
       <rect>
        <x>120</x>
-       <y>20</y>
-       <width>41</width>
-       <height>21</height>
+       <y>18</y>
+       <width>35</width>
+       <height>20</height>
       </rect>
      </property>
      <property name="inputMask">
-      <string>000; </string>
+      <string>000</string>
      </property>
      <property name="text">
       <string>0</string>
@@ -247,17 +287,20 @@
       <string>A</string>
      </property>
     </widget>
-    <widget class="QLineEdit" name="line_text_A">
+    <widget class="QLineEdit" name="line_textcolor_A">
+     <property name="enabled">
+      <bool>false</bool>
+     </property>
      <property name="geometry">
       <rect>
        <x>170</x>
-       <y>20</y>
-       <width>41</width>
-       <height>21</height>
+       <y>18</y>
+       <width>35</width>
+       <height>20</height>
       </rect>
      </property>
      <property name="inputMask">
-      <string>000; </string>
+      <string>000</string>
      </property>
      <property name="text">
       <string>255</string>
@@ -292,17 +335,20 @@
       <string>R</string>
      </property>
     </widget>
-    <widget class="QLineEdit" name="line_back_R">
+    <widget class="QLineEdit" name="line_background_R">
+     <property name="enabled">
+      <bool>false</bool>
+     </property>
      <property name="geometry">
       <rect>
        <x>20</x>
-       <y>20</y>
-       <width>41</width>
-       <height>21</height>
+       <y>18</y>
+       <width>35</width>
+       <height>20</height>
       </rect>
      </property>
      <property name="inputMask">
-      <string>000; </string>
+      <string>000</string>
      </property>
      <property name="text">
       <string>255</string>
@@ -337,17 +383,20 @@
       <string>B</string>
      </property>
     </widget>
-    <widget class="QLineEdit" name="line_back_G">
+    <widget class="QLineEdit" name="line_background_G">
+     <property name="enabled">
+      <bool>false</bool>
+     </property>
      <property name="geometry">
       <rect>
        <x>70</x>
-       <y>20</y>
-       <width>41</width>
-       <height>21</height>
+       <y>18</y>
+       <width>35</width>
+       <height>20</height>
       </rect>
      </property>
      <property name="inputMask">
-      <string>000; </string>
+      <string>000</string>
      </property>
      <property name="text">
       <string>255</string>
@@ -356,17 +405,20 @@
       <number>3</number>
      </property>
     </widget>
-    <widget class="QLineEdit" name="line_back_B">
+    <widget class="QLineEdit" name="line_background_B">
+     <property name="enabled">
+      <bool>false</bool>
+     </property>
      <property name="geometry">
       <rect>
        <x>120</x>
-       <y>20</y>
-       <width>41</width>
-       <height>21</height>
+       <y>18</y>
+       <width>35</width>
+       <height>20</height>
       </rect>
      </property>
      <property name="inputMask">
-      <string>000; </string>
+      <string>000</string>
      </property>
      <property name="text">
       <string>255</string>
@@ -388,17 +440,20 @@
       <string>A</string>
      </property>
     </widget>
-    <widget class="QLineEdit" name="line_back_A">
+    <widget class="QLineEdit" name="line_background_A">
+     <property name="enabled">
+      <bool>false</bool>
+     </property>
      <property name="geometry">
       <rect>
        <x>170</x>
-       <y>20</y>
-       <width>41</width>
-       <height>21</height>
+       <y>18</y>
+       <width>35</width>
+       <height>20</height>
       </rect>
      </property>
      <property name="inputMask">
-      <string>000; </string>
+      <string>000</string>
      </property>
      <property name="text">
       <string>0</string>
@@ -412,7 +467,7 @@
     <property name="geometry">
      <rect>
       <x>10</x>
-      <y>50</y>
+      <y>47</y>
       <width>56</width>
       <height>18</height>
      </rect>
@@ -421,23 +476,16 @@
      <string>Font size</string>
     </property>
    </widget>
-   <widget class="QLineEdit" name="line_fromotherfont">
-    <property name="geometry">
-     <rect>
-      <x>200</x>
-      <y>20</y>
-      <width>241</width>
-      <height>21</height>
-     </rect>
-    </property>
-   </widget>
    <widget class="QLineEdit" name="line_fontsize">
+    <property name="enabled">
+     <bool>false</bool>
+    </property>
     <property name="geometry">
      <rect>
-      <x>60</x>
-      <y>50</y>
+      <x>68</x>
+      <y>49</y>
       <width>41</width>
-      <height>21</height>
+      <height>16</height>
      </rect>
     </property>
     <property name="text">
@@ -451,13 +499,16 @@
      <x>10</x>
      <y>240</y>
      <width>441</width>
-     <height>101</height>
+     <height>110</height>
     </rect>
    </property>
    <property name="title">
     <string>3. Set Font Option</string>
    </property>
    <widget class="QCheckBox" name="chk_useoutline">
+    <property name="enabled">
+     <bool>false</bool>
+    </property>
     <property name="geometry">
      <rect>
       <x>20</x>
@@ -474,7 +525,7 @@
     <property name="geometry">
      <rect>
       <x>10</x>
-      <y>40</y>
+      <y>45</y>
       <width>211</width>
       <height>61</height>
      </rect>
@@ -496,16 +547,19 @@
      </property>
     </widget>
     <widget class="QLineEdit" name="line_outline_R">
+     <property name="enabled">
+      <bool>false</bool>
+     </property>
      <property name="geometry">
       <rect>
        <x>20</x>
        <y>20</y>
        <width>41</width>
-       <height>21</height>
+       <height>20</height>
       </rect>
      </property>
      <property name="inputMask">
-      <string>000; </string>
+      <string>000</string>
      </property>
      <property name="text">
       <string>128</string>
@@ -541,16 +595,19 @@
      </property>
     </widget>
     <widget class="QLineEdit" name="line_outline_G">
+     <property name="enabled">
+      <bool>false</bool>
+     </property>
      <property name="geometry">
       <rect>
        <x>70</x>
        <y>20</y>
        <width>41</width>
-       <height>21</height>
+       <height>20</height>
       </rect>
      </property>
      <property name="inputMask">
-      <string>000; </string>
+      <string>000</string>
      </property>
      <property name="text">
       <string>128</string>
@@ -560,16 +617,19 @@
      </property>
     </widget>
     <widget class="QLineEdit" name="line_outline_B">
+     <property name="enabled">
+      <bool>false</bool>
+     </property>
      <property name="geometry">
       <rect>
        <x>120</x>
        <y>20</y>
        <width>41</width>
-       <height>21</height>
+       <height>20</height>
       </rect>
      </property>
      <property name="inputMask">
-      <string>000; </string>
+      <string>000</string>
      </property>
      <property name="text">
       <string>128</string>
@@ -592,16 +652,19 @@
      </property>
     </widget>
     <widget class="QLineEdit" name="line_outline_A">
+     <property name="enabled">
+      <bool>false</bool>
+     </property>
      <property name="geometry">
       <rect>
        <x>170</x>
        <y>20</y>
        <width>41</width>
-       <height>21</height>
+       <height>20</height>
       </rect>
      </property>
      <property name="inputMask">
-      <string>000; </string>
+      <string>000</string>
      </property>
      <property name="text">
       <string>255</string>
@@ -624,12 +687,15 @@
      </property>
     </widget>
     <widget class="QLineEdit" name="line_outline_size">
+     <property name="enabled">
+      <bool>false</bool>
+     </property>
      <property name="geometry">
       <rect>
        <x>70</x>
-       <y>40</y>
+       <y>43</y>
        <width>41</width>
-       <height>21</height>
+       <height>15</height>
       </rect>
      </property>
      <property name="text">
@@ -638,6 +704,9 @@
     </widget>
    </widget>
    <widget class="QCheckBox" name="chk_useRGB">
+    <property name="enabled">
+     <bool>false</bool>
+    </property>
     <property name="geometry">
      <rect>
       <x>110</x>
@@ -651,6 +720,9 @@
     </property>
    </widget>
    <widget class="QCheckBox" name="chk_usealiasing">
+    <property name="enabled">
+     <bool>false</bool>
+    </property>
     <property name="geometry">
      <rect>
       <x>250</x>
@@ -663,17 +735,12 @@
      <string>Draw font without anti-alising</string>
     </property>
    </widget>
-   <zorder>chk_useoutline</zorder>
-   <zorder>group_outline</zorder>
-   <zorder>chk_useRGB</zorder>
-   <zorder>chk_usealiasing</zorder>
-   <zorder>groupBox_4</zorder>
   </widget>
   <widget class="QGroupBox" name="groupBox_4">
    <property name="geometry">
     <rect>
      <x>10</x>
-     <y>350</y>
+     <y>355</y>
      <width>441</width>
      <height>121</height>
     </rect>
@@ -695,6 +762,9 @@
     </property>
    </widget>
    <widget class="QLineEdit" name="line_column">
+    <property name="enabled">
+     <bool>false</bool>
+    </property>
     <property name="geometry">
      <rect>
       <x>110</x>
@@ -704,7 +774,7 @@
      </rect>
     </property>
     <property name="inputMask">
-     <string>000; </string>
+     <string>000</string>
     </property>
     <property name="text">
      <string>12</string>
@@ -726,7 +796,10 @@
      <string>Width(of Canvas)</string>
     </property>
    </widget>
-   <widget class="QLineEdit" name="line_cwidth">
+   <widget class="QLineEdit" name="line_iwidth">
+    <property name="enabled">
+     <bool>false</bool>
+    </property>
     <property name="geometry">
      <rect>
       <x>110</x>
@@ -771,7 +844,10 @@
      <string>Height(of Canvas)</string>
     </property>
    </widget>
-   <widget class="QLineEdit" name="line_cheight">
+   <widget class="QLineEdit" name="line_iheight">
+    <property name="enabled">
+     <bool>false</bool>
+    </property>
     <property name="geometry">
      <rect>
       <x>270</x>
@@ -803,7 +879,10 @@
      <string>Width(of font)</string>
     </property>
    </widget>
-   <widget class="QLineEdit" name="line_fheight">
+   <widget class="QLineEdit" name="line_cheight">
+    <property name="enabled">
+     <bool>false</bool>
+    </property>
     <property name="geometry">
      <rect>
       <x>270</x>
@@ -835,7 +914,10 @@
      <string>Height(of font)</string>
     </property>
    </widget>
-   <widget class="QLineEdit" name="line_fwidth">
+   <widget class="QLineEdit" name="line_cwidth">
+    <property name="enabled">
+     <bool>false</bool>
+    </property>
     <property name="geometry">
      <rect>
       <x>110</x>
@@ -855,6 +937,9 @@
     </property>
    </widget>
    <widget class="QLineEdit" name="line_xoffset">
+    <property name="enabled">
+     <bool>false</bool>
+    </property>
     <property name="geometry">
      <rect>
       <x>110</x>
@@ -887,6 +972,9 @@
     </property>
    </widget>
    <widget class="QLineEdit" name="line_yoffset">
+    <property name="enabled">
+     <bool>false</bool>
+    </property>
     <property name="geometry">
      <rect>
       <x>270</x>
@@ -923,7 +1011,7 @@
    <property name="geometry">
     <rect>
      <x>10</x>
-     <y>480</y>
+     <y>485</y>
      <width>441</width>
      <height>71</height>
     </rect>
@@ -932,6 +1020,9 @@
     <string>5. Special Settings</string>
    </property>
    <widget class="QCheckBox" name="chk_usespecialpalette">
+    <property name="enabled">
+     <bool>false</bool>
+    </property>
     <property name="geometry">
      <rect>
       <x>10</x>
@@ -945,11 +1036,14 @@
     </property>
    </widget>
    <widget class="QLineEdit" name="line_spepal">
+    <property name="enabled">
+     <bool>false</bool>
+    </property>
     <property name="geometry">
      <rect>
       <x>230</x>
       <y>20</y>
-      <width>211</width>
+      <width>205</width>
       <height>21</height>
      </rect>
     </property>
@@ -958,6 +1052,9 @@
     </property>
    </widget>
    <widget class="QPushButton" name="btn_spepal">
+    <property name="enabled">
+     <bool>false</bool>
+    </property>
     <property name="geometry">
      <rect>
       <x>150</x>
@@ -971,6 +1068,9 @@
     </property>
    </widget>
    <widget class="QCheckBox" name="chk_savejson">
+    <property name="enabled">
+     <bool>false</bool>
+    </property>
     <property name="geometry">
      <rect>
       <x>10</x>
@@ -988,7 +1088,7 @@
    <property name="geometry">
     <rect>
      <x>10</x>
-     <y>560</y>
+     <y>570</y>
      <width>85</width>
      <height>28</height>
     </rect>
@@ -1001,7 +1101,7 @@
    <property name="geometry">
     <rect>
      <x>100</x>
-     <y>560</y>
+     <y>570</y>
      <width>85</width>
      <height>28</height>
     </rect>
@@ -1011,10 +1111,13 @@
    </property>
   </widget>
   <widget class="QPushButton" name="btn_build">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
    <property name="geometry">
     <rect>
      <x>314</x>
-     <y>560</y>
+     <y>570</y>
      <width>131</width>
      <height>28</height>
     </rect>
