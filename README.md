@@ -25,9 +25,56 @@ pip install pyqt5
 * Draw a font with posterize.
 
 # Usage
-Just open `index.py` and use GUI frontend.
+Just double click `index.py` and use GUI frontend.
 
-# Example (in CLU)
+# Usage (in CLI)
+```
+usage: index.py [-h] [--font FONT] [--size SIZE] [--width WIDTH] [--height HEIGHT] [--column COLUMN] [--disable-alpha]
+                [--color COLOR] [--background-color BACKGROUND_COLOR] [--enable-outline]
+                [--outline-width OUTLINE_WIDTH] [--outline-color OUTLINE_COLOR] [--character-width CHARACTER_WIDTH]
+                [--character-height CHARACTER_HEIGHT] [--xoffset XOFFSET] [--yoffset YOFFSET]
+                [--diasble-anti-aliasing] [--output OUTPUT]
+                text
+
+Draw font into static image
+
+positional arguments:
+  text                              A string or text file to make image.
+
+optional arguments:
+  -h, --help                        show this help message and exit
+  --font FONT, -f FONT              Path of custom font
+  --size SIZE, -s SIZE              Size of font
+  --width WIDTH                     Width of canvas
+  --height HEIGHT                   Height of canvas
+  --column COLUMN, -col COLUMN      Number of columns
+  --disable-alpha, -d               Disable alpha channel
+  --color COLOR, -c COLOR           Color of font
+  --background-color BACKGROUND_COLOR, -bg BACKGROUND_COLOR
+                                    Background color of font
+  --enable-outline, -oline
+                                    Enable outline
+  --outline-width OUTLINE_WIDTH, -owidth OUTLINE_WIDTH
+                                    Outline width
+  --outline-color OUTLINE_COLOR, -ocolor OUTLINE_COLOR
+                                    Outline color of font
+  --character-width CHARACTER_WIDTH, -cwidth CHARACTER_WIDTH
+                                    Width of each character
+  --character-height CHARACTER_HEIGHT, -cheight CHARACTER_HEIGHT
+                                    Height of each character
+  --xoffset XOFFSET, -x XOFFSET
+                                    X Offset of each character
+  --yoffset YOFFSET, -y YOFFSET
+                                    Y Offset of each character
+  --diasble-anti-aliasing, -dalias
+                                    Disable anti-aliasing
+  --output OUTPUT, -o OUTPUT
+                                    Output file name
+```
+```
+index.py "abcdefghijklmnopqrstuvwxyz" --column 15 -c #FFFF00 -bg #00FFFF -oline -owidth 2 -ocolor #FFFFFF -o example1.png
+``` 
+# Example (Using core.py)
 
 ```
 # Make a normal font in RGBA
