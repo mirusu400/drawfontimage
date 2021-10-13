@@ -5,7 +5,7 @@ Draw a font into static image file
 
 # Requirement
 ```
-Python >= 3.X
+Python >= 3.5~3.8 (Highly recommend 3.8)
 pillow == 7.2.0
 chardet == 4.0.0
 pyqt5
