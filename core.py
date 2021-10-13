@@ -33,6 +33,12 @@ class canvas:
         self.mode = mode
         self.image = ""
         self.data = {}
+        if bgcolor[0] == "#":
+            self.bgcolor = self.hex2rgb(bgcolor)
+        if fcolor[0] == "#":
+            self.fontcolor = self.hex2rgb(fcolor)
+        if ocolor[0] == "#":
+            self.outlinecolor = self.hex2rgb(ocolor)
         if mode == "RGB":
             bgcolor = (bgcolor[0], bgcolor[1], bgcolor[2])
             fcolor = (fcolor[0], fcolor[1], fcolor[2])
@@ -52,6 +58,13 @@ class canvas:
                 else:
                     self.font = "/usr/share/fonts/truetype/freefont/FreeMono.ttf"
 
+    def hex2rgb(self, color):
+        """
+        The function for convert hex color to rgb color.
+        """
+        color = color.lstrip("#")
+        tp = tuple(int(color[i:i + 2], 16) for i in (0, 2, 4))
+        return (tp[0], tp[1], tp[2], 255)
 
     def setJSON(self, file):
         '''
@@ -121,7 +134,7 @@ class canvas:
             self.height = ((len(text) // self.column) + 2) * cheight
 
         img = Image.new(self.mode, (self.width, self.height), color=self.bgcolor)
-        fnt = ImageFont.truetype(self.font, self.size, encoding="UTF-8")
+        fnt = ImageFont.truetype(self.font, self.size, encoding="utf-8")
 
         draw = ImageDraw.Draw(img)
 
@@ -145,7 +158,7 @@ class canvas:
         self.data['imagemode'] = self.mode
         self.data['fontmode'] = mode
         self.data['character'] = []
-
+        
         # Draw a chracter into image
         for char in text:
             chardata = {}
@@ -163,10 +176,10 @@ class canvas:
                 xcharoffset = 0
             xpos = (ncolumn * cwidth) + xoffset - xcharoffset 
             ypos = (nrow * cheight) + yoffset
-
+            
             draw.text(
-                (xpos, ypos),
-                char,
+                xy=(xpos, ypos),
+                text=char,
                 fill=self.fontcolor,
                 font=fnt,
                 # https://pillow.readthedocs.io/en/stable/handbook/text-anchors.html#text-anchors
