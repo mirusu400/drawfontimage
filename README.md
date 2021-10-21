@@ -6,17 +6,18 @@ Draw a font into static image file
 # Requirement
 ```
 Python >= 3.5~3.8 (Highly recommend 3.8)
-pillow == 7.2.0
+pillow == 7.2.0 or >= 8.4.0
 chardet == 4.0.0
 pyqt5
 ```
 
 # Installation
 ```
-pip install pillow==7.2.0
-pip install chardet==4.0.0
-pip install pyqt5
+pip install -r requirements.txt
 ```
+
+# Usage
+Just double click `index.py` and use GUI frontend.
 
 # Functions
 * Draw a font.
@@ -24,8 +25,6 @@ pip install pyqt5
 * Draw a font without anti-aliasing.
 * Draw a font with posterize.
 
-# Usage
-Just double click `index.py` and use GUI frontend.
 
 # Usage (in CLI)
 ```
@@ -74,7 +73,9 @@ optional arguments:
 ```
 index.py "abcdefghijklmnopqrstuvwxyz" --column 15 -c #FFFF00 -bg #00FFFF -oline -owidth 2 -ocolor #FFFFFF -o example1.png
 ``` 
-# Example (Using core.py)
+
+
+# Usage (Using core.py)
 
 ```
 # Make a normal font in RGBA

@@ -1,0 +1,4 @@
+pip install pillow==7.2.0; python_version <= '3.5'
+pip install pillow==8.4.0; python_version > '3.5'
+pip install chardet==4.0.0
+pip install pyqt5
