@@ -163,7 +163,7 @@ class QtWindowDrawFontImage(QMainWindow, form_class):
     
         # Post-processing
         if usespecialpalette:
-            cv.change_palette()
+            cv.change_palette(palette)
         # TODO: add other post-processing (ex. posterize)
 
         # Save image
